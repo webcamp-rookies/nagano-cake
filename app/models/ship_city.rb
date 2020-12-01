@@ -1,0 +1,2 @@
+class ShipCity < ApplicationRecord
+end
