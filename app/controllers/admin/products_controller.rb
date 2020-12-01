@@ -2,6 +2,7 @@ class Admin::ProductsController < ApplicationController
   # before_action :if_not_admin
 
   def new
+    @product = Product.new
   end
   def create
   end
@@ -13,7 +14,6 @@ class Admin::ProductsController < ApplicationController
   end
   def update
   end
-
   # private
   # def if_not_admin
   #   redirect_to root_path unless current_user.admin?
