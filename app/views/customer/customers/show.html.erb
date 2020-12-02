@@ -2,7 +2,8 @@
 <h1>会員詳細</h1>
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
-  <P><strong class="shipping-link">編集する</strong></p>
+    <td><%= link_to "編集する", edit_customer_path(@customer.id), class: "btn btn-primary" %></td>
+
 	<p><strong class="order-link">パスワードを変更する</strong></p>
     <table class="table table-bordered">
       <tbody>
