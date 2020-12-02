@@ -18,10 +18,11 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
 
   end
-  
+
   scope module: :customer do
-    resources :products
+    root 'products#top'
     get "products/about" => "products#about"
-    resources :customers
+    resources :products
+    resources :customers, only: [:index, :show]
   end
 end

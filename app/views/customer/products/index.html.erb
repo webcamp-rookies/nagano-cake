@@ -1,0 +1,27 @@
+<div class="conteiner">
+  <div class="row">
+    <%= render 'admin/genres/genre_sidebar', genres: @genres %>
+
+    <h1>
+      <% if params[:genre_id] %>
+        <%= @genre.name %>
+      <% else %>
+        すべての商品
+      <% end %>
+    </h1>
+    <strong> 全<%= @products.length %>件 </strong>
+    <div class="products-list">
+      <% @products.each do |product| %>
+        <% if product.genre.is_active == true %>
+          <div class="products-list-item">
+            <%= link_to product_path(product) do %>
+              <%= attachment_image_tag product, :image, :limit, 100,100, format: 'jpeg', fallback: 'no_image.jpg',size: "200x200" %>
+            <% end %>
+            <%= product.name %>
+            <%= (product.price*1.1).floor%>円(税込)
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
