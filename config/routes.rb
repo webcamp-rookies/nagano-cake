@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
-    
   }
   devise_for :admins, controllers: {
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -12,6 +11,10 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admin do
+    resources :customers
+  end
+  
+  scope module: :customer do
     resources :customers
   end
 end
