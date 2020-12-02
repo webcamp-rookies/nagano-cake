@@ -1,5 +1,5 @@
 <h1>商品一覧</h1>
-<table class="">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>商品ID<th>
@@ -14,7 +14,7 @@
       <td><%= product.id %></td>
       <td><%= link_to product.name,admin_product_path(product) %></td>
       <td><%= product.price %></td>
-      <td><%= product.genre %></td>
+      <td><%= product.genre_id %></td>
       <td><%= product.is_active %></td>
     </tr>
     <% end %>
