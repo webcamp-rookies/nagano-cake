@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admin do
+    resources :customers
   end
 end
