@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   scope module: :customer do
     resources :products
     get "products/about" => "products#about"
-    resources :customers
+    resources :customers, only: [:show, :create, :edit, :update]
   end
 end
