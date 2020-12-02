@@ -1,15 +1,15 @@
 <h1>商品新規登録</h1>
-<%= form_with model:@product,local:true do |f| %>
+<%= form_with model:@product,url:admin_products_path,local:true do |f| %>
 <%= f.attachment_field :image %>
 <%= f.label :商品名%>
 <%= f.text_field :name %>
 <%= f.label :商品説明 %>
-<%= f.text_area :introfuction %>
+<%= f.text_area :introduction %>
 <%= f.label :ジャンル %>
-<%= f.select :create,[["ケーキ","ケーキ"],["プリン","プリン"],["焼き菓子","焼き菓子"],["キャンディ","キャンディ"]],include_blank: "選択して下さい"  %>
+<%= f.select :genre_id,[["ケーキ",1],["プリン",2],["焼き菓子",3],["キャンディ",4]],include_blank: "選択して下さい"  %>
 <%= f.label :税抜価格 %>
 <%= f.text_field :price %>円
 <%= f.label :販売ステータス %>
-<%= f.select :is_active,[["販売中","販売中"],["売り切れ","売り切れ"]],include_blank: "選択して下さい" %>
+<%= f.select :is_active,[["販売中",true],["売り切れ",false]],include_blank: "選択して下さい" %>
 <%= f.submit "新規登録"%>
 <% end %>
