@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   }
   devise_for :admins, controllers: {
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
     sessions:      'admins/sessions',
     passwords:     'admins/passwords',
     registrations: 'admins/registrations'
   }
   namespace :admin do
-    resources :customers
+    resources :genres, only: [:index, :create, :edit, :update]
+
   end
   
   scope module: :customer do
