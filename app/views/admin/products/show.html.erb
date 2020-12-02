@@ -16,7 +16,17 @@
         </tr>
             <tr>
           <td>ジャンル</td>
-          <td><%= @product.genre_id %></td>
+          <td>
+            <% if @product.genre_id == 1 %>
+            <%= "ケーキ" %>
+            <% elsif @product.genre_id == 2 %>
+            <%= "プリン" %>
+            <% elsif @product.genre_id == 3 %>
+            <%= "焼き菓子" %>
+            <% elsif @product.genre_id == 4 %>
+            <%= "キャンディ" %>
+            <% end %>
+          </td>
         </tr>
             <tr>
           <td>税込価格（税抜価格）</td>
@@ -24,7 +34,13 @@
         </tr>
             <tr>
           <td>販売ステータス</td>
-          <td><%= @product.is_active %></td>
+          <td>
+            <% if @product.is_active == true %>
+              <%= "販売中" %>
+              <% elsif @product.is_active == false %>
+              <%=  "売り切れ" %>
+            <% end %>
+          </td>
         </tr>
       </table>
       <%= link_to "編集する",edit_admin_product_path(@product) %>
