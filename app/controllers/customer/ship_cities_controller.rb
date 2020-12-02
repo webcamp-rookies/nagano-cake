@@ -1,4 +1,5 @@
-class ShipCitiesController < ApplicationController
+class Customer::ShipCitiesController < ApplicationController
+  #before_action :authenticate_customer!
  def index
   @ship_cities = current_customer
   @ship_city = ShipCity.new
@@ -18,6 +19,7 @@ class ShipCitiesController < ApplicationController
   @ship_city = ShipCity.find(params[:id])
   @ship_city.update(ship_city_params)
   redirect_to ship_cities_path
+  reder :edit
  end
 
  def destroy
