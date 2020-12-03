@@ -15,7 +15,7 @@
       <td><%= link_to product.name,admin_product_path(product) %></td>
       <td><%= product.price %></td>
       <td>
-        <% if product.genre_id == 1 %>
+        <% if product.genre_id == 1 %> 
           <%= "ケーキ" %>
           <% elsif product.genre_id == 2 %>
           <%= "プリン" %>
@@ -28,7 +28,7 @@
       <td>
         <% if product.is_active == true %>
           <%= "販売中" %>
-          <% elsif product.is_active == false %>
+          <% else %>
           <%=  "売り切れ" %>
         <% end %>
       </td>
