@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   scope module: :customer do
     root 'products#top'
-    get "products/about" => "products#about"
+    get "about" => "products#about"
     resources :products
     resources :customers, only: [:index, :show]
   end
