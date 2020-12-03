@@ -19,10 +19,8 @@ class Customer::ShipCitiesController < ApplicationController
 
  def update
   @ship_city = ShipCity.find(params[:id])
-  if @ship_city.update(ship_city_params)
+  @ship_city.update(ship_city_params)
      redirect_to ship_cities_path
-
-  end
  end
 
  def destroy
