@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_out_path_for(resource)
-    products_top_path # ログアウト後に遷移するpathを設定
+    products_path # ログアウト後に遷移するpathを設定
   end
   protected
 
