@@ -1,22 +1,24 @@
 <div class="container">
   <div class="row">
-    <%= render 'admin/genres/genre_sidebar', genres: @genres  %>
-
-	  <div class="show-image">
-			<%= attachment_image_tag @product, :image, size:'500x350', fallback: "No_Image.jpg", size:'500x350' %>
-	  </div>
-	  <div class="show-content">
-      <h2><%= @product.name %></h2><br>
-      <p><%= @product.introduction %></p>
-      <h3>¥<%= (@product.price*1.1).floor %><span>（税込）</span></h3>
-      <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
-        <%= f.hidden_field :product_id, :value => @product.id %>
-          <%# if customer_signed_in? %>
-          <!--<= f.number_field :amount , placeholder: "個数選択", min: 1, max: 50 %>-->
-            <%= f.select :amount, 個数選択:[1,2,3,4,5,6,7,8,9,10] %>
-          	<%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
-          <%# end %>
-      <% end %>
+    <div class="col-md-3">
+      <%= render 'admin/genres/genre_sidebar', genres: @genres  %>
+    </div>
+    <div class="col-md-9">
+      <div class="show-image">
+			  <%= attachment_image_tag @product, :image, size:'500x350', fallback: 'no_image.jpg', size:'400x400' %>
+	    </div>
+	    <div class="show-content">
+        <h2><%= @product.name %></h2><br>
+        <p><%= @product.introduction %></p>
+        <h3>¥<%= (@product.price*1.1).floor %><span>（税込）</span></h3>
+        <%= form_with model: @cart_product, url: cart_items_path, local: true do |f| %>
+            <%# if customer_signed_in? %>
+              <!--<= f.number_field :amount , placeholder: "個数選択", min: 1, max: 50 %>-->
+              <%= f.select :amount, 個数選択:[1,2,3,4,5,6,7,8,9,10] %>
+            	<%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
+            <%# end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
