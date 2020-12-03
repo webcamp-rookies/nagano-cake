@@ -23,5 +23,6 @@ Rails.application.routes.draw do
     resources :products
     get "products/about" => "products#about"
     resources :customers, only: [:show, :create, :edit, :update]
+    resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
   end
 end
