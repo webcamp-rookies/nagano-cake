@@ -23,7 +23,13 @@ Rails.application.routes.draw do
   scope module: :customer do
     resources :products
     get "products/about" => "products#about"
-    resources :customers, only: [:show, :create, :edit, :update]
+    resources :customers do
+      member do
+        get "check"
+        patch "withdraw"
+      end
+    end
+      
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
   end
 end
