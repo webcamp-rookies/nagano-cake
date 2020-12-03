@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
 
 protected
   def after_sign_in_path_for(resource)
-    products_about_path #rogin後遷移path要変更
+    if customer_signed_in?
+        products_about_path #rogin後遷移path要変更
+    else
+      admin_customers_path #rogin後遷移path確認用なので要変更
+    end
   end
   
   def after_sign_out_path_for(resource)

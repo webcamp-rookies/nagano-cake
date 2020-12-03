@@ -1,3 +1,4 @@
+<%= link_to "ログアウト管理者 test", destroy_admin_session_path, method: :delete %>
 
 <h1>会員一覧</h1>
 <div class="row">
@@ -18,8 +19,8 @@
               <%= customer.id %>
             </td>
             <td>
-              <!--customer詳細ページへのリンクを春-->
-              <%= (customer.last_name + customer.first_name) %> 
+              <%= link_to (customer.last_name + customer.first_name),customer_path(customer.id) %>
+              <%=  %> 
             </td>
             <td>
               <%= customer.email %>
