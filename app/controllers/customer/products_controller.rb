@@ -2,6 +2,7 @@ class Customer::ProductsController < ApplicationController
   def top
     @genres = Genre.where(is_active: true)
     @products = Product.all
+    @random = Product.order("RANDOM()").limit(4)
   end
 
   def about

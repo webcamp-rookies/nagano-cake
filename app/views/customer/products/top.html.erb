@@ -6,8 +6,8 @@
 
 
     <div class="col-md-9">
-      <div class="top_box">
-        <p class="top_txt">
+      <div class="top-box">
+        <p class="top-text">
           ようこそ、NaganoCakeへ！<br>
           このサイトは、ケーキ販売のECサイトになります。<br>
           会員でない方も商品の閲覧はできますが、<br>
@@ -15,21 +15,21 @@
         </p>
       </div>
 
-
-      <h3>おすすめ商品</h3>
-      <div class="row">
-        <% @products.each do |product| %>
-          <ul class="recommend_list">
-            <li>
-              <%= link_to product_path(product) do %>
-                <%= attachment_image_tag product, :image, size:'200x150', fallback: 'no_image.jpg', size:'250x250' %><br>
-              <% end %>
-              <p><%= product.name %></p>
-            </li>
-          </ul>
-          <p>¥<%= product.price %> </p>
+      <div class="recommend-title">
+        <h3>おすすめ商品</h3>
+      </div>
+      <div class="recommend-container">
+        <% @random.each do |product| %>
+          <div class="recommend-product">
+            <%= link_to product_path(product) do %>
+              <%= attachment_image_tag product, :image, size:'180x130', fallback: 'no_image.jpg', size:'180x130' %><br>
+            <% end %>
+            <p><%= product.name %></p>
+            <p>¥<%= product.price %> </p>
+          </div>
         <% end %>
       </div>
+      <div class="recommend-more"><%= link_to "もっとみる>>", products_path %></div>
     </div>
   </div>
 </div>
