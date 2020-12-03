@@ -19,8 +19,8 @@ class Customer::CustomersController < ApplicationController
     end
     
     def check
-        @user = User.find(params[:id])
-        #ユーザーの情報を見つける
+        @customer = Customer.find(params[:id])
+        #退会ページでユーザーの情報を見つける
     end
 
     
@@ -28,6 +28,7 @@ class Customer::CustomersController < ApplicationController
         @customer = Customer.find(current_customer.id)
         @customer.update(is_deleted: false)
         reset_session
+        flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
         redirect_to root_path
     end
 

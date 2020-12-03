@@ -29,7 +29,6 @@ Rails.application.routes.draw do
         patch "withdraw"
       end
     end
-      
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
   end
 end
