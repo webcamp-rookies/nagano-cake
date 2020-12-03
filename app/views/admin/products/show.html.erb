@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <p id = "notice">
+     <%= notice %>
+      </p>
     <h2>商品詳細</h2>
     <div class="col-lg-5">
       <!--<%#= attachment_image_tag @product, :image,format: 'jpeg',fallback: "no_image.jpg",size"100x100" %>-->
@@ -37,7 +40,7 @@
           <td>
             <% if @product.is_active == true %>
               <%= "販売中" %>
-              <% elsif @product.is_active == false %>
+              <% else %>
               <%=  "売り切れ" %>
             <% end %>
           </td>

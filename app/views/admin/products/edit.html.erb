@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <h2>商品編集</h2>
+    <%= render 'product_errors', product: @product %>
     <%= form_with model:@product,url:admin_product_path,local:true do |f| %>
-    <%#= render 'products/product_form', product = @product %>
     <div class="col-lg-5">
       <%#= attachment_image_tag @product, :image,format: 'jpeg',fallback: "no_image.jpg",size"100x100" %>
       <%#= f.attachment_field :image %>

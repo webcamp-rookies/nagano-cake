@@ -1,5 +1,6 @@
 <div class="container">
         <h2>商品新規登録</h2>
+        <%= render 'product_errors', product: @product %>
         <%= form_with model:@product,url:admin_products_path,local:true do |f| %>
     <div class="row">
         <div class="col-lg-5">
@@ -15,7 +16,7 @@
                     <td>商品説明</td>
                     <td><%= f.text_area :introduction %></td>
                 </tr>
-                <tr>    
+                <tr>
                     <td>ジャンル</td>
                     <td><%= f.select :genre_id,[["ケーキ",1],["プリン",2],["焼き菓子",3],["キャンディ",4]],include_blank: "選択して下さい"  %></td>
                 </tr>
@@ -23,11 +24,11 @@
                     <td>税抜価格</td>
                     <td><%= f.text_field :price %>円</td>
                 </tr>
-                <tr>    
+                <tr>
                     <td>販売ステータス</td>
                     <td><%= f.select :is_active,[["販売中",true],["売り切れ",false]],include_blank: "選択して下さい" %></td>
-                </tr>    
-                <tr>    
+                </tr>
+                <tr>
                     <td><%= f.submit "新規登録"%><td>
                 <tr>
             <% end %>
