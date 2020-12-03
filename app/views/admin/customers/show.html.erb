@@ -1,0 +1,44 @@
+
+<h1>会員名さんの会員詳細</h1>
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+            <td>顧客ID</td>
+            <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+        <tr>
+            <td>氏名</td>
+            <td><%= (@customer.last_name + @customer.first_name) %></td>
+        </tr>
+        <tr>
+            <td>カナ</td>
+            <td><%= (@customer.last_name_kana + @customer.first_name_kana) %></td>
+        </tr>
+        <tr>
+            <td>郵便番号</td>
+            <td><%= @customer.postcode %></td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td><%= @customer.city %></td>
+        </tr>
+        <tr>
+            <td>電話番号</td>
+            <td><%= @customer.phone_number %> </td>
+        </tr>
+        <tr>
+            <td>メールアドレス</td>
+            <td><%= @customer.email %></td>
+        </tr>
+      </tbody>
+    </table>
+    <P><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-primary" %>
+	</p>
+	<p><strong class="order-link">注文履歴</strong>
+	</p>
+	</div>
+  </div>
+</div>

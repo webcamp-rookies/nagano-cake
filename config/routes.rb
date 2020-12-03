@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     get "products/top" => "products#top"
+    resources :customers
     resources :products
     resources :genres, only: [:index, :create, :edit, :update]
 
@@ -24,5 +25,12 @@ Rails.application.routes.draw do
     get "about" => "products#about"
     resources :products
     resources :customers, only: [:index, :show]
+    resources :customers do
+      member do
+        get "check"
+        patch "withdraw"
+      end
+    end
+    resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
   end
 end
