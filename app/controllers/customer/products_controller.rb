@@ -8,7 +8,6 @@ class Customer::ProductsController < ApplicationController
   end
 
   def index
-    @product = Product.find(params[:id])
     @genres = Genre.where(is_active: true)
     if params[:genre_id]
 		  @genre = Genre.find(params[:genre_id])
@@ -21,6 +20,6 @@ class Customer::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @genres = Genre.where(is_active: true)
-    #@cart_product = CartProduct.new
+    @cart_product = CartProduct.new
   end
 end

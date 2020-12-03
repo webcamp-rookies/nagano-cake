@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     root 'products#top'
     get "about" => "products#about"
     resources :products
-    resources :customers, only: [:index, :show]
     resources :customers do
       member do
         get "check"
