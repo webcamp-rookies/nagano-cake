@@ -18,17 +18,18 @@ class Customer::CustomersController < ApplicationController
         @customer = Customer.find(params[:id])
     end
     
-    def check
-        @user = User.find(params[:id])
+    def quit
+        @customer = Customer.find(params[:id])
         #ユーザーの情報を見つける
     end
 
     
     def withdraw
         @customer = Customer.find(current_customer.id)
-        @customer.update(is_deleted: false)
+        @customer.update(is_deleted: true)
         reset_session
-        redirect_to root_path
+        flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+        redirect_to admin_customers_path #遷移先を考える
     end
 
 
