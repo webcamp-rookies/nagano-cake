@@ -12,9 +12,9 @@ class Customer::ProductsController < ApplicationController
     @genres = Genre.where(is_active: true)
     if params[:genre_id]
 		  @genre = Genre.find(params[:genre_id])
-		  @products = @genre.products.where(is_active: true)
+		  @products = @genre.products.where(is_active: true).page(params[:page]).reverse_order
     else
-      @products = Product.where(is_active: true)
+      @products = Product.where(is_active: true).page(params[:page]).reverse_order
     end
   end
 
