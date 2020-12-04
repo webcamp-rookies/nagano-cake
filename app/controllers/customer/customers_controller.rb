@@ -1,7 +1,9 @@
 class Customer::CustomersController < ApplicationController
+      before_action :authenticate_customer!
+
     
     def edit
-        @customer = Customer.find(params[:id])
+        @customer = current_customer
     end
     
     def update
@@ -15,11 +17,11 @@ class Customer::CustomersController < ApplicationController
     end
     
     def show
-        @customer = Customer.find(params[:id])
+        @customer = current_customer
     end
     
     def quit
-        @customer = Customer.find(params[:id])
+        @customer = current_customer
         #ユーザーの情報を見つける
     end
 
