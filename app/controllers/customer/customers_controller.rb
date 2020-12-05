@@ -1,5 +1,5 @@
 class Customer::CustomersController < ApplicationController
-    
+
     def edit
         @customer = Customer.find(params[:id])
     end
@@ -13,7 +13,7 @@ class Customer::CustomersController < ApplicationController
         render 'edit'
         end
     end
-    
+
     def show
         @customer = Customer.find(params[:id])
     end
