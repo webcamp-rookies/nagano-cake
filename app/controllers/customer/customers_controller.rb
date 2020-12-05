@@ -1,7 +1,7 @@
 class Customer::CustomersController < ApplicationController
+
       before_action :authenticate_customer!
 
-    
     def edit
         @customer = current_customer
     end
@@ -15,7 +15,7 @@ class Customer::CustomersController < ApplicationController
         render 'edit'
         end
     end
-    
+
     def show
         @customer = current_customer
     end
@@ -23,6 +23,7 @@ class Customer::CustomersController < ApplicationController
     def quit
         @customer = current_customer
         #ユーザーの情報を見つける
+
     end
 
     
@@ -31,7 +32,9 @@ class Customer::CustomersController < ApplicationController
         @customer.update(is_deleted: true)
         reset_session
         flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-        redirect_to admin_customers_path #遷移先を考える
+
+        redirect_to root_path
+
     end
 
 

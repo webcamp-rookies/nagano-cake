@@ -9,19 +9,32 @@ class Admin::ProductsController < ApplicationController
   end
   def create
     @product = Product.new(product_params)
-    @product.save
+    if @product.save
+      flash[:notice] ="Product was successfully created"
     redirect_to admin_products_path
+    else
+      render "new"
+    end
   end
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page]).per(10)
   end
   def show
+    @product = Product.find(params[:id])
   end
   def edit
+    @product = Product.find(params[:id])
   end
   def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      flash[:notice] ="Product was successfully updated"
+      redirect_to admin_product_path(@product)
+    else
+      render "show"
+    end
   end
-  
+
   private
   # def if_not_admin
   #   redirect_to root_path unless current_user.admin?
