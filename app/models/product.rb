@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_many :cart_products, dependent: :destroy
  attachment :image
-# varidates :genre_id, presence: true,inclusion: {in: 1..4}
+# varidates :genre_id, presence: true
 # varidates :introduction, presence: true
 # varidates :name, presence: true
 # varidates :image_id, presence: true

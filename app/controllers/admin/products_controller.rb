@@ -16,7 +16,7 @@ class Admin::ProductsController < ApplicationController
     end
   end
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page]).per(10)
   end
   def show
     @product = Product.find(params[:id])
@@ -33,7 +33,7 @@ class Admin::ProductsController < ApplicationController
       render "show"
     end
   end
-  
+
   private
   # def if_not_admin
   #   redirect_to root_path unless current_user.admin?
