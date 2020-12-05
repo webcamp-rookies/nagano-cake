@@ -1,5 +1,6 @@
 class Customer::ShipCitiesController < ApplicationController
-  #before_action :authenticate_customer!　あとでコメント状態解除
+  before_action :authenticate_customer!
+  #あとでコメント状態解除
  def index
   @ship_cities = ShipCity.all#あとで削除
   #@ship_cities = current_customer　あとでコメント状態解除
