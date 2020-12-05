@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  # before_action :authenticate_admin! 管理者用！！！！変更！！！
 
   def index
     @genre = Genre.new

@@ -1,7 +1,9 @@
 class Customer::CustomersController < ApplicationController
 
+      before_action :authenticate_customer!
+
     def edit
-        @customer = Customer.find(params[:id])
+        @customer = current_customer
     end
     
     def update
@@ -15,21 +17,24 @@ class Customer::CustomersController < ApplicationController
     end
 
     def show
-        @customer = Customer.find(params[:id])
+        @customer = current_customer
     end
     
-    def check
-        @customer = Customer.find(params[:id])
-        #退会ページでユーザーの情報を見つける
+    def quit
+        @customer = current_customer
+        #ユーザーの情報を見つける
+
     end
 
     
     def withdraw
         @customer = Customer.find(current_customer.id)
-        @customer.update(is_deleted: false)
+        @customer.update(is_deleted: true)
         reset_session
         flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+
         redirect_to root_path
+
     end
 
 

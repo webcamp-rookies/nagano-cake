@@ -1,13 +1,19 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+protected
   def after_sign_in_path_for(resource)
-    products_about_path #rogin後遷移path要変更
+    if customer_signed_in?
+        customer_path(current_customer) #login後遷移path要変更確認用なので
+    else
+      admin_customers_path #login後遷移path確認用なので要変更
+    end
   end
   
   def after_sign_out_path_for(resource)
-    products_top_path # ログアウト後に遷移するpathを設定
+    products_path # ログアウト後に遷移するpathを設定 要変更
   end
-  protected
+
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, 

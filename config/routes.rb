@@ -5,13 +5,7 @@ Rails.application.routes.draw do
   passwords:     'customers/passwords',
   registrations: 'customers/registrations'
   }
-  devise_for :admins, controllers: {
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
-  }
+  devise_for :admins
   namespace :admin do
 
     get "products/top" => "products#top"
@@ -26,9 +20,11 @@ Rails.application.routes.draw do
     root 'products#top'
     get "about" => "products#about"
     resources :products
-    resources :customers do
+
+    get "products/about" => "products#about"
+    resources :customers, only: [:show, :create, :edit, :update] do
       member do
-        get "check"
+        get "quit"
         patch "withdraw"
       end
     end
