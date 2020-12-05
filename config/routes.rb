@@ -1,8 +1,35 @@
 Rails.application.routes.draw do
-  devise_for :customers
-  devise_for :admins
+
+  devise_for :customers, controllers:{
+  sessions:      'customers/sessions',
+  passwords:     'customers/passwords',
+  registrations: 'customers/registrations'
+  }
+  devise_for :admins, controllers: {
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  namespace :admin do
+    get "products/top" => "products#top"
+    resources :customers
+    resources :products
+    resources :genres, only: [:index, :create, :edit, :update]
+
+  end
+
   scope module: :customer do
-   resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
+    root 'products#top'
+    get "about" => "products#about"
+    resources :products
+    resources :customers do
+      member do
+        get "check"
+        patch "withdraw"
+      end
+    end
+    resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
   end
 end
