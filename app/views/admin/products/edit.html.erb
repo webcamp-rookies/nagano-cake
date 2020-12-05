@@ -4,8 +4,8 @@
     <%= render 'product_errors', product: @product %>
     <%= form_with model:@product,url:admin_product_path,local:true do |f| %>
     <div class="col-lg-5">
-      <%#= attachment_image_tag @product, :image,format: 'jpeg',fallback: "no_image.jpg",size"100x100" %>
-      <%#= f.attachment_field :image %>
+      <%= attachment_image_tag @product, :image, size:'250x250', fallback: 'no_image.jpg',size: "250x250" %>
+      <%= f.attachment_field :image %>
     </div>
     <div class="col-lg-7">
       <table>
@@ -19,9 +19,7 @@
         </tr>
         <tr>
           <td>ジャンル</td>
-          <td>
-           <%= f.select :genre_id,[["ケーキ",1],["プリン",2],["焼き菓子",3],["キャンディ",4]] %>
-          </td>
+            <td> <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: @product.genre_id} %>
         </tr>
         <tr>
           <td>税込価格（税抜価格）</td>

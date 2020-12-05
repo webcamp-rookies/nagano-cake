@@ -5,7 +5,7 @@
       </p>
     <h2>商品詳細</h2>
     <div class="col-lg-5">
-      <!--<%#= attachment_image_tag @product, :image,format: 'jpeg',fallback: "no_image.jpg",size"100x100" %>-->
+      <%= attachment_image_tag @product, :image, size:'250x250', fallback: 'no_image.jpg',size: "250x250" %>
     </div>
     <div class="col-lg-7">
       <table>
@@ -19,21 +19,11 @@
         </tr>
             <tr>
           <td>ジャンル</td>
-          <td>
-            <% if @product.genre_id == 1 %>
-            <%= "ケーキ" %>
-            <% elsif @product.genre_id == 2 %>
-            <%= "プリン" %>
-            <% elsif @product.genre_id == 3 %>
-            <%= "焼き菓子" %>
-            <% elsif @product.genre_id == 4 %>
-            <%= "キャンディ" %>
-            <% end %>
-          </td>
+          <td><%= @product.genre.name %></td>
         </tr>
             <tr>
           <td>税込価格（税抜価格）</td>
-          <td><%= @product.price %></td>
+          <td><%= @product.price.to_s(:delimited) %></td>
         </tr>
             <tr>
           <td>販売ステータス</td>
