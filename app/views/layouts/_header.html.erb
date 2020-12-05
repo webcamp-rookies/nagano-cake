@@ -14,8 +14,8 @@
           ようこそ、<%#= first_name(current_customer) %>さん！
           </li>
           <li><%#= link_to "マイページ", customers_mypage_path %></li>
-          <li><%#= link_to "商品一覧", products_path %></li>
-          <li><%#= link_to "カート", cart_products_path %></li>
+          <li><%#= link_to "商品一覧", products_path  %></li>
+          <li><%#= link_to "カート", cart_products_path  %></li>
           <li><%= link_to "ログアウト", destroy_customer_session_path, methhod: :delete %></li>
          <%# elsif admin_signed_in?  %>
           <!--管理者がログインしている時 -->
