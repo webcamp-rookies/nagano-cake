@@ -14,6 +14,11 @@
  *= require_self
  */
 
+
  header .navbar-right {
 	list-style: none;
 }
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+

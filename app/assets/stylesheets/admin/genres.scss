@@ -1,0 +1,19 @@
+// Place all the styles related to the admin::genres controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// index
+
+.genre-head {
+  margin: 50px;
+}
+
+.genre-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.genre-table {
+  margin-top: 10px;
+}
