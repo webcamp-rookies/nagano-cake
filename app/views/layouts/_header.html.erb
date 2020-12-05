@@ -17,13 +17,13 @@
           <li><%#= link_to "商品一覧", products_path %></li>
           <li><%#= link_to "カート", cart_products_path %></li>
           <li><%= link_to "ログアウト", destoroy_customer_session_path, methhod: :delete %></li>
-         <%# elsif admin_sign_in? %>
+         <%# elsif admin_signed_in? %>
           <!--管理者がログインしている時 -->
          <li><%#= link_to "商品一覧", admin_products_path %></li>
            <li><%#= link_to "会員一覧", admin_customer_path %></li>
            <li><%#= link_to "注文履歴一覧", admin_order_path %></li>
            <li><%#= link_to "ジャンル一覧", admin_genre_path %></li>
-           <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
          <% else %>
           <!--ログインしていない時　-->
            <li><%#= link_to "about", about_path %></li>
