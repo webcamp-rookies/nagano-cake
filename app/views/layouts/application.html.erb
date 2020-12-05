@@ -11,10 +11,9 @@
   </head>
 
   <body>
-    <%= render "layouts/header" %>
+    <%= render "layouts/header", customer: current_customer %> 
     <div class="cpntainer">
       <%= render "layouts/flashmessage" %>
-
 
     </div>
     <%= yield %>

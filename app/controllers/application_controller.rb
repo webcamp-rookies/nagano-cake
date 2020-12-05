@@ -11,7 +11,7 @@ protected
   end
   
   def after_sign_out_path_for(resource)
-    products_path # ログアウト後に遷移するpathを設定 要変更
+    root_path # ログアウト後に遷移するpathを設定 要変更
   end
 
 
