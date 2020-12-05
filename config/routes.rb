@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admin do
+
     get "products/top" => "products#top"
     resources :customers
     resources :products
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :customer do
+
     root 'products#top'
     get "about" => "products#about"
     resources :products
@@ -31,5 +33,6 @@ Rails.application.routes.draw do
       end
     end
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
+
   end
 end
