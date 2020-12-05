@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-  # belongs_to :genre
+
+  belongs_to :genre
   has_many :order_details, dependent: :destroy
   has_many :cart_products, dependent: :destroy
  attachment :image
@@ -9,4 +10,5 @@ class Product < ApplicationRecord
 # varidates :image_id, presence: true
 # varidates :price, presence: true
 # varidates :is_active, presence: true,inclusion: {in: [true, false]}
+
 end

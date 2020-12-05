@@ -15,13 +15,24 @@ Rails.application.routes.draw do
   namespace :admin do
 
     get "products/top" => "products#top"
+    resources :customers
     resources :products
     resources :genres, only: [:index, :create, :edit, :update]
 
   end
-  
+
   scope module: :customer do
-    get "products/about" => "products#about"
+
+    root 'products#top'
+    get "about" => "products#about"
     resources :products
+    resources :customers do
+      member do
+        get "check"
+        patch "withdraw"
+      end
+    end
+    resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
+
   end
 end
