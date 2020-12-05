@@ -1,0 +1,93 @@
+// Place all the styles related to the customer::products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// top
+
+// .top-box {
+//   display: flex;
+//   justify-content: center;
+//   border: solid 2px black;
+//   width: 600px;
+//   height: 250px;
+// }
+
+.top-text {
+  background-color: #FF9872;
+  text-align: center;
+  border: solid 3px #FF4F02;
+  border-radius: 10px;
+  padding-top: 6px;
+  width: 400px;
+  height: 100px;
+  margin: 70px auto;
+}
+
+.recommend-title {
+  padding-left: 40px;
+}
+
+.recommend-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 20px;
+}
+
+.recommend-product {
+  margin: 10px;
+}
+
+.recommend-more {
+  text-align: right;
+}
+
+
+// about
+
+
+.about-title {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.about-comment {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 15px;
+}
+
+.about-image {
+   width: 500px;
+   height: 300px;
+   margin: 0 auto;
+   background-color: orange;
+}
+
+
+// index
+
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.products-list-item {
+  margin: 10px;
+}
+
+
+//show
+
+.show-image {
+  text-align: center;
+  margin: 30px 0 ;
+}
+
+.show-content {
+  margin: 50px 0 ;
+
+}
