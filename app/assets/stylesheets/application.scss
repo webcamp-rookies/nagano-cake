@@ -13,16 +13,16 @@
  *= require_tree .
  *= require_self
  */
-
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
  header .navbar-right {
 	list-style: none;
 }
 
-body{
-    margin-top:100px;
-    
+body {
+	margin-top: 100px;
 }
-@import "bootstrap-sprockets";
-@import "bootstrap";
+
+
 
