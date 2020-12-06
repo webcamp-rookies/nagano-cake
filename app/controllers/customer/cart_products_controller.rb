@@ -22,7 +22,6 @@ class Customer::CartProductsController < ApplicationController
   end
 
   def update
-    id = params[:cart_product][:id]
     @cart_product = CartProduct.find(params[:id])
     if params[:cart_product][:quantity] == "0"
       @cart_product.destroy
@@ -38,21 +37,9 @@ class Customer::CartProductsController < ApplicationController
     end
   end
 
-  def destroy
-    current_customer.cart_products.find(params[:id]).destroy
-    flash[:notice] = "商品を削除しました"
-    redirect_to cart_products_path
-  end
-
-  def destroy_all
-    current_customer.cart_products.destroy_all
-    flash[:notice] = "カート内全商品を削除しました"
-    redirect_to cart_products_path
-  end
-
   private
   def cart_product_params
-    params.require(:cart_product).permit(:product_id, :quantity)
+    params.require(:cart_product).permit(:product_id)
   end
 
 end
