@@ -2,9 +2,11 @@
 	<div class="row">
 			<h2>ショッピングカート</h2>
 			<!-- カート商品一覧 -->
-			<%= link_to cart_products_destroy_all_path, method: :delete do %>
-      	<button class="btn btn-danger">カートを空にする</button>
-    	<% end %>
+			<div class="text-right">
+				<%= link_to cart_products_destroy_all_path, method: :delete do %>
+	      	<button class="btn btn-danger">カートを空にする</button>
+	    	<% end %>
+    	</div>
     	<div class="cart-item-table row">
 				<table class="table">
 					<thead>
@@ -28,6 +30,7 @@
 		            <% end %>
             	</td>
 							<td><%= cart_product.subtotal.to_s(:delimited) %>
+							<td>
 	            	<%= link_to cart_product_path(cart_product), method: :delete do %>
 	              		<button>削除</button>
 	            	<% end %>
