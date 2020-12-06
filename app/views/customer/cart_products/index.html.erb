@@ -33,7 +33,7 @@
               <%= f.text_field :amount, :size => "5" %>　<%= f.submit "変更" %>
             <% end %>
           </td>
-          <td><%= (cart_product.sub_total * 1.1).floor.to_s(:delimited) %></td>
+          <td><%= cart_product.sub_total %></td>
           <td>
             <%= link_to cart_product_path(cart_product), method: :delete do %>
               <button>削除</button>
@@ -54,7 +54,7 @@
     <table class="table table-bordered">
       <tr>
         <th>合計金額</th>
-        <td><%= %></td>
+        <td><%= @total_price  %></td>
       </tr>
     </table>
   </div>

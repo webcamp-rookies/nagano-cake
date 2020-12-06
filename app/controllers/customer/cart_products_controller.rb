@@ -3,9 +3,12 @@ class Customer::CartProductsController < ApplicationController
     def index
       @cart_products = current_customer.cart_products
       @cart_product = CartProduct.new
+      @total_price = current_customer.cart_products.cart_products_total_price(@cart_products)
+
     end
     
     def update
+      
     end
     
     def create
