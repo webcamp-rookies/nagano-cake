@@ -22,7 +22,6 @@
         <tr>
           <td>
             <%= attachment_image_tag cart_product.product, :image, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
-            <%= cart_product.product.name %>
           </td>
           <td>
             <%= (cart_product.product.price ) %>
@@ -30,10 +29,9 @@
           <td>
             <%= form_with model: cart_product, url: cart_product_path(cart_product), local: true do |f| %>
               <%= f.hidden_field :id, :value => cart_product.id %>
-              <%= f.text_field :quantity, :size => "5" %>　<%= f.submit "変更" %>
+              <%= f.text_field :amount, :size => "5" %>　<%= f.submit "変更" %>
             <% end %>
           </td>
-          <td><%= cart_product.subtotal %></td>
           <td>
             <%= link_to cart_product_path(cart_product), method: :delete do %>
               <button>削除</button>
@@ -63,9 +61,7 @@
   <% if current_customer.cart_products.any? %>
     <div class="col-xs-4 col-xs-offset-4">
       <% if current_customer.cart_products.any? %>
-        <%#= link_to new_order_path do %>
           <button class="btn btn-success">情報入力に進む</button>
-        <%# end %>
       <% end %>
     </div>
   <% end %>
