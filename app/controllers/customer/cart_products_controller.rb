@@ -4,6 +4,11 @@ class Customer::CartProductsController < ApplicationController
 
   def index
     @cart_products = current_customer.cart_products
+    @cart_product = CartProduct.new
+    @total_price = 0
+    @cart_products.each do |cart_product|
+      @total_price += cart_product.subtotal
+    end
   end
 
   def create
@@ -14,12 +19,28 @@ class Customer::CartProductsController < ApplicationController
   end
 
   def update
+    @cart_product = CartProduct.find(params[:id])
+    @cart_product.update(cart_product_params)
+    redirect_to cart_products_path
+  end
+
+
+  def destroy
+    current_customer.cart_products.find(params[:id]).destroy
+    flash[:notice] = "商品を削除しました"
+    redirect_to cart_products_path
+  end
+
+  def destroy_all
+    @cart_products = CartProduct.all
+    @cart_products.destroy_all
+    redirect_to cart_products_path
   end
 
   private
 
   def cart_product_params
-    params.require(:cart_product).permit(:customer_id,:amount,:product_id)
+    params.require(:cart_product).permit(:product_id, :amount)
   end
 
 end

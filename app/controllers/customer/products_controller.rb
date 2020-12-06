@@ -23,6 +23,6 @@ class Customer::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @genres = Genre.where(is_active: true)
-    @cart_product = CartProduct.new
+    @cart_product = CartProduct.new 
   end
 end
