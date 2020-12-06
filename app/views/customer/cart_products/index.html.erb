@@ -22,6 +22,7 @@
         <tr>
           <td>
             <%= attachment_image_tag cart_product.product, :image, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
+            <%= cart_product.product.name %>
           </td>
           <td>
             <%= (cart_product.product.price ) %>
@@ -32,6 +33,7 @@
               <%= f.text_field :amount, :size => "5" %>　<%= f.submit "変更" %>
             <% end %>
           </td>
+          <td><%= (cart_product.sub_total * 1.1).floor.to_s(:delimited) %></td>
           <td>
             <%= link_to cart_product_path(cart_product), method: :delete do %>
               <button>削除</button>
@@ -52,7 +54,7 @@
     <table class="table table-bordered">
       <tr>
         <th>合計金額</th>
-        <td><%= @total_fee %></td>
+        <td><%= %></td>
       </tr>
     </table>
   </div>

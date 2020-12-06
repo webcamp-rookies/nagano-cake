@@ -9,19 +9,18 @@ class Customer::CartProductsController < ApplicationController
     end
     
     def create
-    @cart_product = current_customer.cart_products.new(params_cart_product)
-    @cart_product.save!
-    redirect_to cart_products_path
+      @cart_product = current_customer.cart_products.new(params_cart_product)
+      @cart_product.save!
+      redirect_to cart_products_path
     end
     
     def destroy
-    current_customer.cart_products.find(params[:id]).destroy
-    redirect_to cart_products_path
+      current_customer.cart_products.find(params[:id]).destroy
+      redirect_to cart_products_path
     end
     
     def destroy_all
     end
-    
     
   
     def params_cart_product
