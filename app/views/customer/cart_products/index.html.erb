@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="row">
+			<h2>ショッピングカート</h2>
+			<!-- カート商品一覧 -->
+			<div class="cart-item-table row">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>商品名</th>
+							<th>単価（税込）</th>
+							<th>数量</th>
+							<th>小計</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @cart_products.each do |cart_product| %>
+						<tr>
+
+							<td><%= cart_product.product.name %></td>
+
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+			<!-- 合計金額 -->
+					<table class="table">
+						<tbody>
+							<th class>合計金額</th>
+							<td class>円</td>
+						</tbody>
+					</table>
+				</div>
+			</div>
+      <% if current_customer.cart_products.present? %>
+		<div>
+			<%= link_to "情報入力に進む", new_order_path, class:"btn btn-primary form-control" %>
+      <% end %>
+		</div>
+	</div>
+</div>
