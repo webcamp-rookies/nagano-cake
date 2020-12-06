@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :genre
   has_many :order_details, dependent: :destroy
   has_many :cart_products, dependent: :destroy
+  has_many :customers
  attachment :image
 # varidates :genre_id, presence: true
 # varidates :introduction, presence: true

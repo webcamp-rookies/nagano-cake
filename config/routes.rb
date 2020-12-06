@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       end
     end
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
+    resources :cart_products
 
   end
 end
