@@ -29,22 +29,29 @@
                 <td>送料</td>
                 <td>
                     <%= @order.shipping %>円
+                    <%= f.hidden_field :shipping, :value => @order.shipping %>
                 </td>
                 <td>商品合計</td>
                 <td><%= @total_price %>
                 </td>
                 <td>請求金額</td>
                 <td><%= @total_price + 800 %>
+                    <%= f.hidden_field :total_fee, :value => @order.total_fee %>
+                </td>
             </tr>
         </tbody>
     </table>
     <div>
         <b>支払方法</b>
         <%= @order.payment %>
+        <%= f.hidden_field :payment, :value => @order.payment %>
         <b>お届け先</b>
         <%= @order.postcode %>
+        <%= f.hidden_field :postcode, :value => @order.postcode %>
         <%= @order.city %>
+        <%= f.hidden_field :city, :value => @order.city %>
         <%= @order.name %>
+        <%= f.hidden_field :name, :value => @order.name %>
     </div>
     <%= f.submit "購入を確定する" %>
 <% end %>

@@ -12,16 +12,28 @@ class Customer::OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.orders.new(order_params)
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
 
-    if @order.save
-      current_customer.cart_products.destroy_all
-      redirect_to orders_thanks_path
+    if @order.save!
+      @cart_products = current_customer.cart_products
+      #カートの中の情報をひとつづつ保存
+      @cart_products.each do |cart_product|
+        order_detail = OrderProduct.new(order_id: @order.id)
+        order_detail.price = cart_product.product.price
+        order_detail.amount = cart_product.amount
+        order_detail.product_id = cart_product.product_id
+        order_detail.save!
+      end
+      #保存後カートの中を空にする
+        @cart_products.destroy_all
+        redirect_to orders_thanks_path
     else
-      render :confirm
+        @order = Order.new
+        render :new
     end
   end
+
 
 
 
@@ -31,7 +43,7 @@ class Customer::OrdersController < ApplicationController
 
   def confirm
     @cart_products = current_customer.cart_products
-    @order = Order.new
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.payment = params[:order][:payment]
     @total_price = current_customer.cart_products.cart_products_total_price(@cart_products)
@@ -72,6 +84,9 @@ class Customer::OrdersController < ApplicationController
     params.require(:ship_city).permit(:postcode, :city, :name)
   end
 
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name)
+  end
 
 
 end
