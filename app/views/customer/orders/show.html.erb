@@ -1,0 +1,11 @@
+<h2>注文画面</h2>
+
+<p>アイテム情報</p>
+  <%= @product.name %>
+  <%= @product.price %>
+
+<%= form_with ([model: @product, @order],local: true url: item_order_confirm_path) do |f| %>
+  <%= f.text_field :quantity %> <br>
+  <%= f.text_field :amount %> <br>
+  <%= f.submit "送信" %> <br>
+<% end %>

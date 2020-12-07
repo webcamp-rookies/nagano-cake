@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
     get "about" => "products#about"
     resources :products
+    resources :orders
 
     get "products/about" => "products#about"
     resources :customers, only: [:show, :create, :edit, :update] do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
     end
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
     resources :cart_products
+    
 
 
   end
