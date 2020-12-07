@@ -2,7 +2,7 @@
 <b>注文情報</b>
 <table>
     <tbody>
-        <% @order_details.each do |order_detail| %>
+        <% @order.each do |order| %>
             <tr>
                 <td>注文日</td>
                 <td><%= order.created_at %></td>

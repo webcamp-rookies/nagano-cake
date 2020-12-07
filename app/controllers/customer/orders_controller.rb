@@ -14,24 +14,19 @@ class Customer::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-
-    if @order.save!
-      @cart_products = current_customer.cart_products
+    @cart_products = current_customer.cart_products
+    @order.save
       #カートの中の情報をひとつづつ保存
-      @cart_products.each do |cart_product|
-        order_detail = OrderProduct.new(order_id: @order.id)
-        order_detail.price = cart_product.product.price
-        order_detail.amount = cart_product.amount
-        order_detail.product_id = cart_product.product_id
-        order_detail.save!
-      end
+      # @cart_products.each do |cart_product|
+      #   order_detail = OrderProduct.new(order_id: @order.id)
+      #   order_detail.price = cart_product.product.price
+      #   order_detail.amount = cart_product.amount
+      #   order_detail.product_id = cart_product.product_id
+      #   order_detail.save!
+      # end
       #保存後カートの中を空にする
-        @cart_products.destroy_all
-        redirect_to orders_thanks_path
-    else
-        @order = Order.new
-        render :new
-    end
+    @cart_products.destroy_all
+    redirect_to orders_thanks_path
   end
 
 
@@ -39,6 +34,9 @@ class Customer::OrdersController < ApplicationController
 
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
+    @order_details.order_id = @order.id
   end
 
   def confirm
@@ -55,7 +53,7 @@ class Customer::OrdersController < ApplicationController
       @order.name = current_customer.last_name + " " + current_customer.first_name
       render 'confirm'
     elsif params[:order][:city_option] == "1"
-      @ship_city = ShipCity.find(params[:order][:id])
+      @ship_city = ShipCity.find(params[:order][:ship_city])
       @order.postcode = @ship_city.postcode
       @order.city = @ship_city.city
       @order.name = @ship_city.name
@@ -76,8 +74,10 @@ class Customer::OrdersController < ApplicationController
   def thanks
   end
 
+  private
+
   def order_params
-    params.permit(:payment, :postcode, :city, :name, :shipping, :total_fee)
+    params.require(:order).permit(:payment, :postcode, :city, :name, :shipping, :total_fee)
   end
 
   def ship_city_params
@@ -85,7 +85,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name)
+    params.require(:customer).permit(:last_name, :first_name, :customer_id)
   end
 
 
