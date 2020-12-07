@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   
   has_many :cart_products
   has_many :products
+  has_many :ship_cities
   
   
   def active_for_authentication?

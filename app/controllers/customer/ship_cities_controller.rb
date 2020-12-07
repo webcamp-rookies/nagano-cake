@@ -1,17 +1,21 @@
 class Customer::ShipCitiesController < ApplicationController
   before_action :authenticate_customer!
-  #あとでコメント状態解除
+
  def index
-  @ship_cities = ShipCity.all#あとで削除
-  #@ship_cities = current_customer　あとでコメント状態解除
+  @ship_cities = current_customer.ship_cities
   @ship_city = ShipCity.new
  end
 
  def create
   @ship_city = ShipCity.new(ship_city_params)
-  #@ship_city.customer.id = current_customer.id あとでコメント状態解除
-  @ship_city.save
-  redirect_to ship_cities_path
+  @ship_city.customer_id = current_customer.id
+  if @ship_city.save
+   flash[:notice] = "新しい配送先を登録しました。"
+   redirect_to ship_cities_path
+  else
+   @ship_cities = current_customer.ship_cities
+   render 'index'
+  end
  end
 
  def edit
@@ -20,14 +24,19 @@ class Customer::ShipCitiesController < ApplicationController
 
  def update
   @ship_city = ShipCity.find(params[:id])
-  @ship_city.update(ship_city_params)
+   if @ship_city.update(ship_city_params)
+     flash[:notice] = "配送先を変更しました"
      redirect_to ship_cities_path
+   else
+     render "edit"
+   end
  end
 
  def destroy
   @ship_city = ShipCity.find(params[:id])
   @ship_city.destroy
-  #@ship_city = current_customer.city あとで削除
+  @ship_city = current_customer.ship_cities
+  flash[:notice] = "連絡先を削除しました"
   redirect_to ship_cities_path
  end
 
