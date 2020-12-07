@@ -12,7 +12,7 @@
         <% @cart_products.each do |cart_product| %>
             <tr>
                 <td>
-                    <%#= attachment_image_tag cart_product.product, :image, :fill, 80, 50, fallback: "no-image.jpg") %>
+                    <%= attachment_image_tag cart_product.product, :image, :fill, 80, 50, fallback: "no_image.jpg", size:"80x50" %>
                     <%= cart_product.product.name %>
                 </td>
                 <td><%= (cart_product.product.price * 1.1).floor %></td>
@@ -29,29 +29,22 @@
                 <td>送料</td>
                 <td>
                     <%= @order.shipping %>円
-                    <%#= f.hidden_field :shipping_cost, :value => @order.shipping %>
                 </td>
                 <td>商品合計</td>
                 <td><%= @total_price %>
                 </td>
                 <td>請求金額</td>
-                <td><%= @total_price + 800 %><%#= @order.total_payment %>
-                    <%#= f.hidden_field :total_payment, :value => @order.total_payment %>
-                </td>
+                <td><%= @total_price + 800 %>
             </tr>
         </tbody>
     </table>
     <div>
         <b>支払方法</b>
         <%= @order.payment %>
-        <%#= f.hidden_field :payment_method, :value => @order.payment_method %>
         <b>お届け先</b>
         <%= @order.postcode %>
-        <%#= f.hidden_field :postal_code, :value => @order.postal_code %>
         <%= @order.city %>
-        <%#= f.hidden_field :address, :value => @order.address %>
         <%= @order.name %>
-        <%#= f.hidden_field :name, :value => @order.name %>
     </div>
     <%= f.submit "購入を確定する" %>
 <% end %>

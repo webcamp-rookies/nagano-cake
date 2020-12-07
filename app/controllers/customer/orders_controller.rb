@@ -12,24 +12,12 @@ class Customer::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    @order = current_customer.orders.new(order_params)
     @order.customer_id = current_customer.id
-    # CartItemからカート商品を取得
-    cart_products = current_customer.cart_products.all
-    # カート商品から注文商品を作成、orderの合計金額を計算
-    sum = 0
-    cart_products.each do |ci|
-      order_detail = OrderDetail.new(order_id: @order.id)
-      order_detail.item_id = ci.item_id
-      order_detail.price = ci.item.price * 1.1
-      order_detail.amount = ci.amount
-      order_detail.save
-      # ここでカートitemを順次削除してもよい
-      sum += order_detail.price
-    end
+
     if @order.save
-      current_customer.cart_items.destroy_all
-      redirect_to customers_orders_thanks_path
+      current_customer.cart_products.destroy_all
+      redirect_to orders_thanks_path
     else
       render :confirm
     end
@@ -77,7 +65,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:payment, :postcode, :city, :name, :shipping, :total_fee)
+    params.permit(:payment, :postcode, :city, :name, :shipping, :total_fee)
   end
 
   def ship_city_params
