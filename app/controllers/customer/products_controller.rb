@@ -25,4 +25,12 @@ class Customer::ProductsController < ApplicationController
     @genres = Genre.where(is_active: true)
     @cart_product = CartProduct.new
   end
+  
+  	private
+	def params_product
+		parmas.require(:product).permit(:image ,:name )
+	end
+  
 end
+
+
