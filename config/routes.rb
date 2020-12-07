@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     root 'products#top'
     delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
     get "about" => "products#about"
+    get 'orders/thanks' => "orders#thanks"
+    post 'orders/confirm'
+
     resources :products
 
     get "products/about" => "products#about"
@@ -27,6 +30,7 @@ Rails.application.routes.draw do
     end
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
     resources :cart_products
+    resources :orders,only: [:index, :new, :create, :show]
 
 
   end
