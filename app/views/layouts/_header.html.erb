@@ -2,7 +2,7 @@
    <div class="container">
      <!--ロゴ -->
      <nav class="nav navbar-nav navbar-left" >
-       <i class="fas fa-birthday-cake">Nagano Cake</i> <!--リンクにする?-->
+       <div class="site-name fas fa-birthday-cake">Nagano Cake</div> <!--リンクにする?-->
      </nav>
     </div>
 
@@ -11,7 +11,7 @@
          <% if customer_signed_in? %>
           <!--カスタマーがログインしている時　-->
           <li class="welcome-name">
-          ようこそ、<%= current_customer.first_name %>さん！
+           ようこそ、<%= current_customer.first_name %>さん！
           </li>
           <li><%= link_to "マイページ", customer_path(current_customer) %></li>
           <li><%= link_to "商品一覧", products_path  %></li>
@@ -22,7 +22,7 @@
           <!--管理者がログインしている時 -->
          <li><%= link_to "商品一覧", admin_products_path %></li>
            <li><%= link_to "会員一覧", admin_customers_path %></li>
-           <li><%#= link_to "注文履歴一覧", admin_orders_path %></li>
+           <li><%= link_to "注文履歴一覧", admin_orders_path %></li>
 
            <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>

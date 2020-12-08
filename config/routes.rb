@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :customers
     resources :products
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only:[:update]
 
   end
 
@@ -16,6 +18,9 @@ Rails.application.routes.draw do
     root 'products#top'
     delete 'cart_products/destroy_all' => 'cart_products#destroy_all'
     get "about" => "products#about"
+    get 'orders/thanks' => "orders#thanks"
+    post 'orders/confirm'
+
     resources :products
 
     get "products/about" => "products#about"
@@ -27,6 +32,7 @@ Rails.application.routes.draw do
     end
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
     resources :cart_products
+    resources :orders,only: [:index, :new, :create, :show]
 
 
   end
