@@ -25,11 +25,18 @@ Rails.application.routes.draw do
         patch "withdraw"
       end
     end
+    
+    resources :orders,only:[:new,:index,:create,:show] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+       end
+    end
+    
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
     resources :cart_products
-    resources :orders
-    get "orders/thanks" => "order#thanks"
-    post "orders/confirm" => "order#confirm"
+  
+    
 
   end
 end

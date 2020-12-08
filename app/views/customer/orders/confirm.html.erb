@@ -27,7 +27,7 @@
            </td>
 
            <td class="text-right">
-             <%#= 小計　%>
+             <%= (cart.product.price * 1.1 * cart.amount).floor %>
            </td>
          </tr>
         <% end %>
@@ -39,17 +39,17 @@
     <table class="table table-hover table-bordered">
       <tr>
         <th>送料</th>
-        <td class="text-right col-xs-5"><%= @order.shipping %></th>
+        <td class="text-right col-xs-5"><%= "#{800}" %></th>
       </tr>
 
       <tr>
         <th>商品合計</th>
-        <td class="text-right">¥<%= @total_price %></td>
+        <td class="text-right">¥<%= @total_fee %></td>
       </tr>
 
       <tr>
         <th>請求金額</th>
-        <td class="text-right">¥<%= @total_price + 800　 %></td>
+        <td class="text-right">¥<%= @total_fee + 800 %></td>
       </tr>
     </table>
   </div>
@@ -61,6 +61,14 @@
     <h4>お届け先</h4>
     <%= "#{@order.postcode}#{@order.city}#{@order.name}" %>
   </div>
-  <%= f.submit "購入を確定する"　%>
+
+  <%= form_with model: @order,url:orders_path, method: :post, local:true do |f| %>
+  <%= f.hidden_field :postcode %>
+  <%= f.hidden_field :city %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :payment %>
+  <%= f.hidden_field :total_fee %>
+  <%= f.hidden_field :city, value:@ship %>
+  <%= f.submit "購入を確定する", class: "btn btn-success" %>
   <% end %>
 </div>
