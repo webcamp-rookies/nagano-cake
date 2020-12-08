@@ -15,9 +15,9 @@
                     <%= attachment_image_tag cart_product.product, :image, :fill, 80, 50, fallback: "no_image.jpg", size:"80x50" %>
                     <%= cart_product.product.name %>
                 </td>
-                <td><%= (cart_product.product.price * 1.1).floor.to_s(:delimited) %></td>
+                <td>¥<%= (cart_product.product.price * 1.1).floor.to_s(:delimited) %>円</td>
                 <td><%= cart_product.amount %></td>
-                <td><%= (cart_product.product.price * cart_product.amount * 1.1).floor.to_s(:delimited) %></td>
+                <td>¥<%= (cart_product.product.price * cart_product.amount * 1.1).floor.to_s(:delimited) %>円</td>
             </tr>
         <% end %>
     </tbody>
@@ -28,14 +28,14 @@
             <tr>
                 <td>送料</td>
                 <td>
-                    <%= @order.shipping.to_s(:delimited) %>円
+                    ¥<%= @order.shipping.to_s(:delimited) %>円
                     <%= f.hidden_field :shipping, :value => @order.shipping %>
                 </td>
                 <td>商品合計</td>
-                <td><%= @total_price.to_s(:delimited) %>
+                <td>¥<%= @total_price.to_s(:delimited) %>円
                 </td>
                 <td>請求金額</td>
-                <td><%= (@total_price + 800).to_s(:delimited) %>
+                <td>¥<%= (@total_price + 800).to_s(:delimited) %>円
                     <%= f.hidden_field :total_fee, :value => (@total_price + 800) %>
                 </td>
             </tr>
@@ -46,7 +46,7 @@
         <%= @order.payment %>
         <%= f.hidden_field :payment, :value => @order.payment %>
         <b>お届け先</b>
-        <%= @order.postcode %>
+        <%= @order.postcode.to_s.insert(3, "-") %>
         <%= f.hidden_field :postcode, :value => @order.postcode %>
         <%= @order.city %>
         <%= f.hidden_field :city, :value => @order.city %>

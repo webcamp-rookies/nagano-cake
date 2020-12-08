@@ -1,1 +1,79 @@
-<h1>注文履歴詳細</h1>
+<h3>注文履歴詳細</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <td>購入者</td>
+        <td>
+          <%= link_to admin_customer_path(@order) do %>
+            <%= @order.customer.last_name %><%= @order.customer.first_name %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>配送先</td>
+        <td>
+          <%= (@order.customer.postcode).to_s.insert(3, "-") %>
+          <%= @order.customer.city %>
+        </td>
+      </tr>
+      <tr>
+        <td>支払い方法</td>
+        <td><%= @order.payment %></td>
+      </tr>
+      <tr>
+        <td>注文ステータス</td>
+        <td>
+          <%= form_with model:@order, url: admin_order_path, local: true do |f| %>
+            <%= f.select :status, ["入金待ち", "入金確認","製作中","発送準備中","発送済み"] %>
+            <%= f.submit "更新", class: 'btn btn-primary' %>
+          <% end %>
+        </td>
+      </tr>
+    </thead>
+  </table>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>製作ステータス</th>
+        <th></th>
+      <tr>
+    </thead>
+    <% @order_details.each do |order_detail| %>
+    <tbody>
+      <tr>
+        <td><%= order_detail.product.name %></td>
+        <td>¥<%= order_detail.price.to_s(:delimited) %>円</td>
+        <td><%= order_detail.amount %></td>
+        <td>¥<%= ((order_detail.price * order_detail.amount).floor).to_s(:delimited) %>円</td>
+        <td>
+          <%= form_with model:order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
+            <%= f.select :make_status, ["製作不可", "製作待ち", "製作中", "製作完了"] %>
+            <%= f.submit "更新", class: 'btn btn-primary' %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <table class='table'>
+    <thead>
+      <tr>
+        <td>商品合計</td>
+        <td>
+          ¥<%= (@order.total_fee - @order.shipping).to_s(:delimited)%>円
+        </td>
+      </tr>
+      <tr>
+        <td>送料</td>
+        <td>¥<%= @order.shipping %>円</td>
+      </tr>
+      <tr>
+        <td>請求金額合計</td>
+        <td>¥<%= @order.total_fee.to_s(:delimited) %>円</td>
+      </tr>
+    </thead>
+  </table>
