@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     end
     resources :ship_cities,only: [:index,:create,:edit,:update,:destroy]
     resources :cart_products
-
+    resources :orders
+    get "orders/thanks" => "order#thanks"
+    post "orders/confirm" => "order#confirm"
 
   end
 end
