@@ -26,8 +26,8 @@ class Customer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    # @order_details = @order.order_details.all
-    # @order_details.order_id = @order.id
+    @order_details = @order.order_details.all
+    @order_details.order_id = @order.id
   end
 
   def confirm
@@ -44,23 +44,26 @@ class Customer::OrdersController < ApplicationController
       @order.name = current_customer.last_name + " " + current_customer.first_name
       render 'confirm'
     elsif params[:order][:city_option] == "1"
-      @ship_city = ShipCity.find(params[:order][:ship_city])
+      @ship_city = ShipCity.find(params[:order][:id])
       @order.postcode = @ship_city.postcode
       @order.city = @ship_city.city
       @order.name = @ship_city.name
       render 'confirm'
     elsif params[:order][:city_option] == "2"
-      @ship_city = current_customer.ship_cities.new(ship_city_params)
-      @ship_city.save
+      @ship_city = current_customer.ship_cities.new
+      @ship_city.city = params[:order][:city]
+      @ship_city.name = params[:order][:name]
+      @ship_city.postcode = params[:order][:postcode]
+      @ship_city.customer_id = current_customer.id
+      if @ship_city.save
       @order.postcode = @ship_city.postcode
-      @order.city = @ship_city.city
       @order.name = @ship_city.name
-      render 'confirm'
-    else
-      render :new
+      @order.city = @ship_city.city
+      else
+       render 'new'
+      end
     end
   end
-
 
   def thanks
   end
@@ -72,11 +75,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def ship_city_params
-    params.require(:ship_city).permit(:postcode, :city, :name)
-  end
-
-  def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :customer_id)
+    params.require(:ship_city).permit(:customer_id, :postcode, :city, :name)
   end
 
 
