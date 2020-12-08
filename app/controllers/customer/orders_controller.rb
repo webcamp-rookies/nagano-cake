@@ -1,7 +1,7 @@
 class Customer::OrdersController < ApplicationController
 
   def index
-    @orders = current_customer.orders.all.page(params[:page]).per(10).order('updated_at DESC')
+    @orders = current_customer.orders.all.page(params[:page]).per(10).order('created_at DESC')
   end
 
 
