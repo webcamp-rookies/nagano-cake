@@ -1,7 +1,7 @@
 class Customer::OrdersController < ApplicationController
 
   def index
-    @orders = current_customer.orders.all
+    @orders = current_customer.orders.all.page(params[:page]).per(10).order('updated_at DESC')
   end
 
 
@@ -14,10 +14,20 @@ class Customer::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @cart_products = current_customer.cart_products
-    @order.save
-    @cart_products.destroy_all
-    redirect_to orders_thanks_path
+    if @order.save!
+      @cart_products = current_customer.cart_products
+      @cart_products.each do |cart_product|
+        order_detail = OrderDetail.new(order_id: @order.id)
+        order_detail.price = cart_product.product.price
+        order_detail.amount = cart_product.amount
+        order_detail.product_id = cart_product.product_id
+        order_detail.save!
+      end
+      @cart_products.destroy_all
+      redirect_to orders_thanks_path
+    else
+      render "new"
+    end
   end
 
 
@@ -27,7 +37,7 @@ class Customer::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details.all
-    @order_details.order_id = @order.id
+    @total_price
   end
 
   def confirm

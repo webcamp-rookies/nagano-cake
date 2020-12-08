@@ -15,9 +15,9 @@
                     <%= attachment_image_tag cart_product.product, :image, :fill, 80, 50, fallback: "no_image.jpg", size:"80x50" %>
                     <%= cart_product.product.name %>
                 </td>
-                <td><%= (cart_product.product.price * 1.1).floor %></td>
+                <td><%= (cart_product.product.price * 1.1).floor.to_s(:delimited) %></td>
                 <td><%= cart_product.amount %></td>
-                <td><%= (cart_product.product.price * cart_product.amount * 1.1).floor %></td>
+                <td><%= (cart_product.product.price * cart_product.amount * 1.1).floor.to_s(:delimited) %></td>
             </tr>
         <% end %>
     </tbody>
@@ -28,15 +28,15 @@
             <tr>
                 <td>送料</td>
                 <td>
-                    <%= @order.shipping %>円
+                    <%= @order.shipping.to_s(:delimited) %>円
                     <%= f.hidden_field :shipping, :value => @order.shipping %>
                 </td>
                 <td>商品合計</td>
-                <td><%= @total_price %>
+                <td><%= @total_price.to_s(:delimited) %>
                 </td>
                 <td>請求金額</td>
-                <td><%= @total_price + 800 %>
-                    <%= f.hidden_field :total_fee, :value => @total_price + 800 %>
+                <td><%= (@total_price + 800).to_s(:delimited) %>
+                    <%= f.hidden_field :total_fee, :value => (@total_price + 800) %>
                 </td>
             </tr>
         </tbody>

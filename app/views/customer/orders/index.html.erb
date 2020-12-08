@@ -12,19 +12,22 @@
   <% @orders.each do |order| %>
     <tbody>
       <tr>
-        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= order.created_at.to_s(:datetime_jp) %></td>
         <td>
           <%= order.postcode %><br/>
           <%= order.city %><br/>
           <%= order.name %>
         </td>
         <td>
-          <%#= order.order_details.product.name %>
+          <% order.order_details.each do |order_detail| %>
+            <%= order_detail.product.name %>
+          <% end %>
         </td>
-        <td><%= order.total_fee%>円</td>
+        <td><%= "#{order.total_fee.to_s(:delimited)}" %>円</td>
         <td></td>
         <td><%= link_to '表示する', order_path(order.id) %></td>
       </tr>
     </tbody>
   <% end %>
 </table>
+  <%= paginate @orders %>
