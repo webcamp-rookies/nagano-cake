@@ -36,7 +36,7 @@
                 </td>
                 <td>請求金額</td>
                 <td><%= @total_price + 800 %>
-                    <%= f.hidden_field :total_fee, :value => @order.total_fee %>
+                    <%= f.hidden_field :total_fee, :value => @total_price + 800 %>
                 </td>
             </tr>
         </tbody>

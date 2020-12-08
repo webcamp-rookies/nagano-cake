@@ -16,15 +16,6 @@ class Customer::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @cart_products = current_customer.cart_products
     @order.save
-      #カートの中の情報をひとつづつ保存
-      # @cart_products.each do |cart_product|
-      #   order_detail = OrderProduct.new(order_id: @order.id)
-      #   order_detail.price = cart_product.product.price
-      #   order_detail.amount = cart_product.amount
-      #   order_detail.product_id = cart_product.product_id
-      #   order_detail.save!
-      # end
-      #保存後カートの中を空にする
     @cart_products.destroy_all
     redirect_to orders_thanks_path
   end
@@ -35,8 +26,8 @@ class Customer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details.all
-    @order_details.order_id = @order.id
+    # @order_details = @order.order_details.all
+    # @order_details.order_id = @order.id
   end
 
   def confirm

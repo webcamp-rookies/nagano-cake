@@ -2,28 +2,26 @@
 <b>注文情報</b>
 <table>
     <tbody>
-        <% @order.each do |order| %>
             <tr>
                 <td>注文日</td>
-                <td><%= order.created_at %></td>
+                <td><%= @order.created_at %></td>
             </tr>
             <tr>
                 <td>配送先</td>
                 <td>
-                    <%= order.postal_code %>
-                    <%= order.address %>
-                    <%= order.name %>
+                    <%= @order.postcode %>
+                    <%= @order.city %>
+                    <%= @order.name %>
                 </td>
             </tr>
             <tr>
                 <td>支払方法</td>
-                <td><%= order.payment %></td>
+                <td><%= @order.payment %></td>
             </tr>
             <tr>
                 <td>注文ステータス</td>
-                <td><%= order.status %></td>
+                <td><%= @order.status %></td>
             </tr>
-        <% end %>
     </tbody>
 </table>
 <b>請求情報</b>
@@ -31,11 +29,11 @@
     <tbody>
         <tr>
             <td>商品合計</td>
-            <td><%= total_payment - shipping_cost %></td>
+            <td><%= @order.total_fee - @order.shipping %></td>
             <td>配送料</td>
-            <td><%= shipping_cost %></td>
+            <td><%= @order.shipping %></td>
             <td><b>ご請求額</b></td>
-            <td><%= total_payment %></td>
+            <td><%= @order.total_fee %></td>
         </tr>
     </tbody>
 </table>
@@ -50,13 +48,13 @@
         </tr>
     </thead>
     <tbody>
-        <% @order_details.each do |order_detail| %>
+        <%# @order_details.each do |order_detail| %>
             <tr>
-                <td><%= order_detail.items.name %></td>
-                <td><%= order_detail.price %></td>
-                <td><%= order_detail.amount %></td>
-                <td><%= order_detail.price * order_detail.amount %></td>
+                <td><%#= order_detail.product.name %></td>
+                <td><%#= order_detail.price %></td>
+                <td><%#= order_detail.amount %></td>
+                <td><%#= order_detail.price * order_detail.amount %></td>
             </tr>
-        <% end %>
+        <%# end %>
     </tbody>
 </table>
