@@ -8,7 +8,7 @@
       <%= f.attachment_field :image %>
     </div>
     <div class="col-lg-7">
-      <table>
+      <table class="table">
         <tr>
           <td>商品名</td>
           <td><%=  f.text_field :name %></td>
@@ -32,7 +32,7 @@
           </td>
         </tr>
         <tr>
-          <td><%= f.submit "変更を保存" %></td>
+          <td><%= f.submit "変更を保存" , class: "btn btn-primary"%></td>
         <tr>
         <% end %>
       </table>

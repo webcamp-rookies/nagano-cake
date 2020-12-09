@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
-   # before_action :authenticate_admin! 管理者用！！！！変更！！！
- # before_action :if_not_admin
+
+  before_action :authenticate_admin!
 
   def top
   end

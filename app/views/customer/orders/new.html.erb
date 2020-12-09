@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
     <div>
       <h3><%= f.label :payment, "支払方法" %></h3>
@@ -40,7 +40,9 @@
         </tr>
       </table>
       <br>
-      <%= f.submit "確認画面へ進む", class:"btn btn-primary" %>
+      <div class="text-center">
+      <%= f.submit "確認画面へ進む", class:"btn btn-lg btn-success" %>
+      </div>
     </div>
   <% end %>
 </div>
