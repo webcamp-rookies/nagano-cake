@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-md-7">
           <div class="show-image">
-			      <%= attachment_image_tag @product, :image, size:'400x300', fallback: 'no_image.jpg', size:'400x300' %>
+			      <%= attachment_image_tag @product, :image, size:'500x400', fallback: 'no_image.jpg', size:'500x400' %>
 	        </div>
         </div>
         <div class="col-md-5">
@@ -15,8 +15,8 @@
             <h2><%= @product.name %></h2><br>
             <p><%= @product.introduction %></p>
             <h3>¥<%= (@product.price*1.1).floor.to_s(:delimited) %>円<span>（税込）</span></h3>
-          </div>
-        </div>
+
+
         <% if customer_signed_in? %>
         <%= form_with model: @cart_product, url: cart_products_path, local: true do |f| %>
               <%= f.hidden_field :product_id, :value => @product.id %>
@@ -24,6 +24,8 @@
             	<%= f.submit 'カートに入れる', class: "btn-sm btn-primary" %>
             <% end %>
         <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

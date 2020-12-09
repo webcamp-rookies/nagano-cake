@@ -1,4 +1,4 @@
-
+<div class="container">
 <h1><%= (@customer.last_name + @customer.first_name) %>さんの会員詳細</h1>
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
@@ -42,10 +42,9 @@
       </tbody>
     </table>
     <P><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-primary" %>
-    <P><%= link_to "adminの客一覧indextest用", admin_customers_path, class: "btn btn-primary" %>
 	</p>
-	<p><strong class="order-link">注文履歴</strong>
-	</p>
+	<p><%= link_to "注文履歴", admin_orders_path, class: "btn btn-primary" %></p>
 	</div>
   </div>
+</div>
 </div>
