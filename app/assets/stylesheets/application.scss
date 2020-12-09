@@ -29,11 +29,11 @@
 // ?
 header {
   border-bottom: solid 2px;
-  background-color: #DDDDDD;
+  background-color: #FFFFFF;
 }
 
 .nav-list {
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 html {
@@ -51,6 +51,7 @@ body {
 
 
 
+
 .site-name {
   margin: 15px 0px;
 }
@@ -61,6 +62,11 @@ body {
 
 .customer-name {
   padding: 15px;
+  color: black;
+}
+
+a {
+  color: black;
 }
 
 // .welcome-name {
@@ -78,6 +84,3 @@ footer {
   position:absolute;
 }
 
-.table {
-  bordercolor: orange;
-}
