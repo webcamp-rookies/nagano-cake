@@ -1,5 +1,7 @@
 class Customer::OrdersController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def index
     @orders = current_customer.orders.all.page(params[:page]).per(10).order('created_at DESC')
   end
