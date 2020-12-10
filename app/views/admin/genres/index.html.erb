@@ -4,7 +4,7 @@
       <h3 class="genre-head">ジャンル一覧・追加</h3>
 
       <%= render 'genre_errors', genre: @genre %>
-      <%= form_with model: @genre, url: admin_genres_path, remote: true do |f| %>
+      <%= form_with model: @genre, url: admin_genres_path do |f| %>
       <table class="table genre-form">
         <tr>
           <th class="genre-name">ジャンル</th>
@@ -30,9 +30,9 @@
             <th colspan="3"></th>
           </tr>
         </thead>
-        <div id ="genre_area_<%= @genre.id %>">
-        <%= render partial: 'genre_index', genre: @genres %>
-        </div>
+        <tbody class="genre_area">
+        <%= render 'genre_index', genres: @genres %>
+        </tbody>
       </table>
     </div>
   </div>

@@ -8,8 +8,9 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.new(genre_params)
+    @genres = Genre.all
     unless @genre.save
-      render :index
+    render :index
     end
   end
 
