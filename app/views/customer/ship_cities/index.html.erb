@@ -21,8 +21,9 @@
           </div>
           <%= f.submit '登録する',class: "col-xs-2 pull-right btn-success" %>
          </div>
-     <% end %>
-      <%= render 'customer/ship_cities/index', ship_cities: @ship_cities %>
+     <% end %>>
  </div>
 </div>
-
+    <div class="ship">
+        <%= render 'customer/ship_cities/index', ship_cities: @ship_cities %>
+    </div>
