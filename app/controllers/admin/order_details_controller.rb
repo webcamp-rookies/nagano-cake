@@ -9,12 +9,12 @@ class Admin::OrderDetailsController < ApplicationController
     @order_details = @order.order_details
     @order_detail.update(order_detail_params)
 
-    if @order_details.where(make_status: 2).count >= 1
+    if @order_details.where(make_status: "製作中").count >= 1
       @order.status = "製作中"
       @order.save
     end
 
-     if @order.order_details.count == @order_details.where(make_status: 3).count
+     if @order.order_details.count == @order_details.where(make_status: "製作完了").count
        @order.status = "発送準備中"
        @order.save
      end
