@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 protected
   def after_sign_in_path_for(resource)
     if customer_signed_in?
-        customer_path(current_customer) #login後遷移path要変更確認用なので
+        root_path#login後遷移path要変更確認用なので
     else
       admin_customers_path #login後遷移path確認用なので要変更
     end

@@ -1,16 +1,15 @@
 <div class="container">
-<h1>ショッピングカート</h1>
-<div class="text-right">
-    <%= link_to cart_products_destroy_all_path, method: :delete do %>
-      <button class="btn btn-danger ">カートを空にする</button>
-    <% end %>
-</div>
-<br>
+  <h1>ショッピングカート</h1>
+  <div class="text-right">
+      <%= link_to cart_products_destroy_all_path, method: :delete do %>
+        <button class="btn btn-danger ">カートを空にする</button>
+      <% end %>
+  </div><br>
     <table class="table table-bordered">
       <thead>
         <tr>
           <th>商品名</th>
-          <th>単価（税抜）</th>
+          <th>単価（税込）</th>
           <th>数量</th>
           <th>小計</th>
           <th>　</th>
@@ -23,7 +22,7 @@
             <%= cart_product.product.name %>
           </td>
           <td>
-            ¥<%= (cart_product.product.price ).to_s(:delimited) %>円
+            ¥<%= (cart_product.product.price*1.1 ).floor.to_s(:delimited) %>
           </td>
           <td>
             <%= form_with model: cart_product, url: cart_product_path(cart_product), local: true do |f| %>
@@ -31,7 +30,7 @@
               <%= f.text_field :amount, :size => "5" %>　<%= f.submit "変更" %>
             <% end %>
           </td>
-          <td>¥<%= cart_product.sub_total.to_s(:delimited) %>円</td>
+          <td>¥<%= cart_product.sub_total.to_s(:delimited) %></td>
           <td>
             <%= link_to cart_product_path(cart_product), method: :delete do %>
               <button>削除</button>
@@ -40,24 +39,24 @@
         </tr>
       <% end %>
     </table>
-    <div class="text-right">
-    <%= link_to root_path do %>
-      <button class="btn btn-primary">買い物を続ける</button>
-    <% end %>
-    </div>
     <table class="table table-bordered">
       <tr>
         <th>合計金額</th>
-        <td>¥<%= @total_price.to_s(:delimited)  %>円</td>
+        <td>¥<%= @total_price.to_s(:delimited)  %></td>
       </tr>
     </table>
     <div class="text-center">
-		  <% if current_customer.cart_products.any? %>
-		      <% if current_customer.cart_products.any? %>
-		      	<%= link_to new_order_path do %>
-		          <button class="btn btn-lg btn-success">情報入力に進む</button>
-		        <% end %>
-		      <% end %>
-		  <% end %>
-		 </div>
+      <div class="text-right">
+        <%= link_to root_path do %>
+          <button class="btn btn-primary">買い物を続ける</button>
+        <% end %>
+      </div>
+  		  <% if current_customer.cart_products.any? %>
+  		      <% if current_customer.cart_products.any? %>
+  		      	<%= link_to new_order_path do %>
+  		          <button class="btn btn-lg btn-success">情報入力に進む</button>
+  		        <% end %>
+  		      <% end %>
+  		  <% end %>
+		</div>
 </div>

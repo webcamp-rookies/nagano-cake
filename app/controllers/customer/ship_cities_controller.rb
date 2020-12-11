@@ -10,7 +10,7 @@ class Customer::ShipCitiesController < ApplicationController
   @ship_city = ShipCity.new(ship_city_params)
   @ship_city.customer_id = current_customer.id
   if @ship_city.save
-   flash[:notice] = "新しい配送先を登録しました。"
+   flash[:notice] = "You have created Shipping address successfully."#英語に統一
    redirect_to ship_cities_path
   else
    @ship_cities = current_customer.ship_cities
