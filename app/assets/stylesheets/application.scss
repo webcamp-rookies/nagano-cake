@@ -65,9 +65,9 @@ body {
   color: black;
 }
 
-a {
-  color: black;
-}
+// a {
+//   color:;
+// }
 
 // .welcome-name {
 //   color: white;
@@ -84,3 +84,20 @@ footer {
   position:absolute;
 }
 
+// table {
+//   border: solid black 2px;
+
+// }
+
+tr, th, td {
+  border: solid #DCDCDC 1px;
+}
+
+thead {
+  background-color:#FFA500;
+  // border: solid orange 1px;
+}
+
+tbody {
+  border: solid #DCDCDC 1px;
+}

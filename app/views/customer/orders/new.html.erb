@@ -27,7 +27,7 @@
       <br>
       <table class="table">
         <tr>
-          <th><%= f.label :shipping, "郵便番号" %></th>
+          <th class="col-xs-2"><%= f.label :shipping, "郵便番号" %></th>
           <td><%= f.text_field :postcode, class: "form-control" %></td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
       </table>
       <br>
       <div class="text-center">
-      <%= f.submit "確認画面へ進む", class:"btn btn-lg btn-success" %>
+      <%= f.submit "確認画面へ進む", class:"btn btn-lg btn-primary" %>
       </div>
     </div>
   <% end %>
