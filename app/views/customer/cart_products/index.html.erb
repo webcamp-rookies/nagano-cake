@@ -11,11 +11,11 @@
     <table class="table cart-table">
       <thead>
         <tr>
-          <th class="col-xs-4">商品名</th>
-          <th class="col-xs-2">単価（税抜）</th>
-          <th class="col-xs-2">数量</th>
-          <th class="col-xs-2">小計</th>
-          <th class="col-xs-2"></th>
+          <th class="active col-xs-4">商品名</th>
+          <th class="active col-xs-2">単価（税抜）</th>
+          <th class="active col-xs-2">数量</th>
+          <th class="active col-xs-2">小計</th>
+          <th class="active col-xs-2"></th>
         </tr>
       </thead>
       <% @cart_products.each do |cart_product| %>
@@ -53,7 +53,7 @@
 		<div class="col-xs-4">
 	    <table class="table">
 	      <tr>
-	        <th>合計金額</th>
+	        <th class="active">合計金額</th>
 	        <td>¥<%= @total_price.to_s(:delimited)  %></td>
 	      </tr>
 	    </table>

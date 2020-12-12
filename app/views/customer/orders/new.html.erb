@@ -25,20 +25,32 @@
       <%= f.radio_button :city_option, 2 %>
       <%= f.label :city, "新しいお届け先" %>
       <br>
-      <table class="table">
-        <tr>
-          <th class="col-xs-2"><%= f.label :shipping, "郵便番号" %></th>
-          <td><%= f.text_field :postcode, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :shipping, "住所" %></th>
-          <td><%= f.text_field :city, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :shipping, "宛名" %></th>
-          <td><%= f.text_field :name, class: "form-control" %></td>
-        </tr>
-      </table>
+      <div class="row">
+          <div class="col-lg-2">
+            <%= f.label :shipping, "郵便番号(ハイフンなし）" %>
+          </div>
+          <div>
+            <%= f.text_field :postcode,class:"col-lg-2" %>
+          </div>
+      </div>
+      </br>
+      <div class="row">
+          <div class="col-lg-2">
+            <%= f.label :shipping, "住所" %>
+          </div>
+          <div>
+            <%= f.text_field :city , class:"col-lg-4"%>
+          </div>
+      </div>
+      </br>
+      <div class="row">
+          <div class="col-lg-2">
+            <%= f.label :shipping, "宛名" %>
+          </div>
+          <div>
+            <%= f.text_field :name , class:"col-lg-2"%>
+          </div>
+      </div>
       <br>
       <div class="text-center">
       <%= f.submit "確認画面へ進む", class:"btn btn-lg btn-primary" %>
@@ -46,3 +58,4 @@
     </div>
   <% end %>
 </div>
+

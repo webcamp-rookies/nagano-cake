@@ -15,9 +15,11 @@
 
 .genre-table {
   margin-top: 95px;
-  background-color: #FAEBD7;
+  // background-color: #FAEBD7;
 }
 
-.genre-thead {
-  background-color: #FFA500;
+
+.genre-table th,
+.genre-table td {
+  border-style: none;
 }

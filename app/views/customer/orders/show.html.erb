@@ -6,11 +6,11 @@
         <table class="table order-show-table">
           <tbody>
             <tr>
-                <td>注文日</td>
+                <td class="active">注文日</td>
                 <td><%= @order.created_at.to_s(:datetime_jp) %></td>
             </tr>
             <tr>
-                <td>配送先</td>
+                <td class="active">配送先</td>
                 <td>
                     <%= @order.postcode %>
                     <%= @order.city %>
@@ -18,11 +18,11 @@
                 </td>
             </tr>
             <tr>
-                <td>支払方法</td>
+                <td class="active">支払方法</td>
                 <td><%= @order.payment %></td>
             </tr>
             <tr>
-                <td>注文ステータス</td>
+                <td class="active">注文ステータス</td>
                 <td><%= @order.status %></td>
             </tr>
           </tbody>
@@ -33,15 +33,15 @@
         <table class="table order-show-table">
           <tbody>
             <tr>
-                <td>商品合計</td>
+                <td class="active">商品合計</td>
                 <td>¥<%= (@order.total_fee - @order.shipping).to_s(:delimited) %>円</td>
             </tr>
             <tr>
-              <td>配送料</td>
+              <td class="active">配送料</td>
               <td>¥<%= @order.shipping %>円</td>
             </tr>
             <tr>
-              <td><b>ご請求額</b></td>
+              <td class="active"><b>ご請求額</b></td>
               <td>¥<%= "#{@order.total_fee.to_s(:delimited)}"%>円</td>
             </tr>
           </tbody>
@@ -53,10 +53,10 @@
     <table class="table order-show-table">
       <thead>
         <tr>
-          <th class="col-xs-6">商品</th>
-          <th>単価（税込）</th>
-          <th>個数</th>
-          <th>小計</th>
+          <th class="active col-xs-6">商品</th>
+          <th class="active">単価（税込）</th>
+          <th class="active">個数</th>
+          <th class="active">小計</th>
         </tr>
       </thead>
       <tbody>
