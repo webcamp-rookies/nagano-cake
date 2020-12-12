@@ -47,9 +47,9 @@
     <tbody>
       <tr>
         <td><%= order_detail.product.name %></td>
-        <td>¥<%= order_detail.price.to_s(:delimited) %>円</td>
+        <td>¥<%= (order_detail.price*1.1).floor.to_s(:delimited) %></td>
         <td><%= order_detail.amount %></td>
-        <td>¥<%= ((order_detail.price * order_detail.amount).floor).to_s(:delimited) %>円</td>
+        <td>¥<%= ((order_detail.price * order_detail.amount*1.1).floor).to_s(:delimited) %></td>
         <td>
           <%= form_with model:order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
             <%= f.select :make_status, ["製作不可", "製作待ち", "製作中", "製作完了"] %>
@@ -65,16 +65,16 @@
       <tr>
         <td>商品合計</td>
         <td>
-          ¥<%= (@order.total_fee - @order.shipping).to_s(:delimited)%>円
+          ¥<%= (@order.total_fee - @order.shipping).to_s(:delimited)%>
         </td>
       </tr>
       <tr>
         <td>送料</td>
-        <td>¥<%= @order.shipping %>円</td>
+        <td>¥<%= @order.shipping %></td>
       </tr>
       <tr>
         <td>請求金額合計</td>
-        <td>¥<%= @order.total_fee.to_s(:delimited) %>円</td>
+        <td>¥<%= @order.total_fee.to_s(:delimited) %></td>
       </tr>
     </thead>
   </table>

@@ -1,72 +1,72 @@
 <div class="container">
-<h1>注文情報確認</h1>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @cart_products.each do |cart_product| %>
-    <tr>
-      <td>
-          <%= attachment_image_tag cart_product.product, :image, :fill, 80, 50, fallback: "no_image.jpg", size:"80x50" %>
-          <%= cart_product.product.name %>
-      </td>
-      <td>¥<%= (cart_product.product.price * 1.1).floor.to_s(:delimited) %>円</td>
-      <td><%= cart_product.amount %></td>
-      <td>¥<%= (cart_product.product.price * cart_product.amount * 1.1).floor.to_s(:delimited) %>円</td>
-    </tr>
+  <h1>注文情報確認</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @cart_products.each do |cart_product| %>
+      <tr>
+        <td>
+            <%= attachment_image_tag cart_product.product, :image, :fill, 80, 50, fallback: "no_image.jpg", size:"80x50" %>
+            <%= cart_product.product.name %>
+        </td>
+        <td>¥<%= (cart_product.product.price * 1.1).floor.to_s(:delimited) %></td>
+        <td><%= cart_product.amount %></td>
+        <td>¥<%= (cart_product.product.price * cart_product.amount * 1.1).floor.to_s(:delimited) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= form_with model: @order, url: orders_path, local: true do |f| %>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td>送料</td>
+          <td>
+              ¥<%= @order.shipping.to_s(:delimited) %>
+              <%= f.hidden_field :shipping, :value => @order.shipping %>
+          </td>
+          <td>商品合計</td>
+          <td>¥<%= @total_price.to_s(:delimited) %>
+          </td>
+          <td>請求金額</td>
+          <td>¥<%= (@total_price + 800).to_s(:delimited) %>
+              <%= f.hidden_field :total_fee, :value => (@total_price + 800) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td>支払方法</td>
+          <td>
+            <%= @order.payment %>
+            <%= f.hidden_field :payment, :value => @order.payment %></br>
+          </td>
+          <td>お届け先</td>
+          <td>
+            <%= @order.postcode.to_s.insert(3, "-") %>
+            <%= f.hidden_field :postcode, :value => @order.postcode %>
+            <%= @order.city %>
+            <%= f.hidden_field :city, :value => @order.city %>
+            <%= @order.name %>
+            <%= f.hidden_field :name, :value => @order.name %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <%= link_to "情報入力へ戻る", new_order_path %>
+    </div>
+    <div class="text-center">
+      <%= f.submit "購入を確定する", class: "btn btn-success btn-block text-center" %>
+    </div>
   <% end %>
-  </tbody>
-</table>
-<%= form_with model: @order, url: orders_path, local: true do |f| %>
-  <table class="table table-bordered">
-    <tbody>
-      <tr>
-        <td>送料</td>
-        <td>
-            ¥<%= @order.shipping.to_s(:delimited) %>円
-            <%= f.hidden_field :shipping, :value => @order.shipping %>
-        </td>
-        <td>商品合計</td>
-        <td>¥<%= @total_price.to_s(:delimited) %>円
-        </td>
-        <td>請求金額</td>
-        <td>¥<%= (@total_price + 800).to_s(:delimited) %>円
-            <%= f.hidden_field :total_fee, :value => (@total_price + 800) %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="table table-bordered">
-    <tbody>
-      <tr>
-        <td>支払方法</td>
-        <td>
-          <%= @order.payment %>
-          <%= f.hidden_field :payment, :value => @order.payment %></br>
-        </td>
-        <td>お届け先</td>
-        <td>
-          <%= @order.postcode.to_s.insert(3, "-") %>
-          <%= f.hidden_field :postcode, :value => @order.postcode %>
-          <%= @order.city %>
-          <%= f.hidden_field :city, :value => @order.city %>
-          <%= @order.name %>
-          <%= f.hidden_field :name, :value => @order.name %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="text-right">
-    <%= link_to "情報入力へ戻る", new_order_path %>
-  </div>
-  <div class="text-center">
-    <%= f.submit "購入を確定する", class: "btn btn-success btn-block text-center" %>
-  </div>
-<% end %>
 </div>
