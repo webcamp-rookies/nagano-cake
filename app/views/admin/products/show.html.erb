@@ -19,7 +19,7 @@
       </div>
       <br>
       <div>
-          <p><strong class="col-xs-4">税込価格(税抜価格)</strong>¥<%= @product.price.to_s(:delimited) %></p>
+          <p><strong class="col-xs-4">税込価格(税抜価格)</strong><%= (@product.price*1.1).floor.to_s(:delimited) %>(<%= (@product.price).floor.to_s(:delimited) %>)円</p>
       </div>
       <br>
       <div>
