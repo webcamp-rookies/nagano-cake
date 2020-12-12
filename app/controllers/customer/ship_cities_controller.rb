@@ -25,7 +25,7 @@ class Customer::ShipCitiesController < ApplicationController
  def update
   @ship_city = ShipCity.find(params[:id])
    if @ship_city.update(ship_city_params)
-     flash[:notice] = "配送先を変更しました"
+     flash[:notice] = "Shipcity was successfully updated"
      redirect_to ship_cities_path
    else
      render "edit"
@@ -36,7 +36,7 @@ class Customer::ShipCitiesController < ApplicationController
   @ship_city = ShipCity.find(params[:id])
   @ship_city.destroy
   @ship_city = current_customer.ship_cities
-  flash[:notice] = "連絡先を削除しました"
+  flash[:notice] = "Shipcity was successfully deleted"
   redirect_to ship_cities_path
  end
 
