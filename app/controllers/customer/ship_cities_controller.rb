@@ -25,7 +25,7 @@ class Customer::ShipCitiesController < ApplicationController
  def update
   @ship_city = ShipCity.find(params[:id])
    if @ship_city.update(ship_city_params)
-     flash[:notice] = "Shipcity was successfully created"
+     flash[:notice] = "Shipcity was successfully updated"
      redirect_to ship_cities_path
    else
      render "edit"
