@@ -5,41 +5,46 @@
       <p id = "notice">
        <%= notice %>
       </p>
-      <div class="text-right">
-        <%= link_to new_admin_product_path do %>
-          <button type="button" class="btn-outline-dark btn-circle btn-lg">＋</button>
-        <% end %>
-      </div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>商品ID</th>
-            <th>商品名</th>
-            <th>税抜価格</th>
-            <th>ジャンル</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @products.each do |product| %>
-          <tr>
-            <td><%= product.id %></td>
-
-            <td><%= link_to product.name,admin_product_path(product) %></td>
-            <td>¥<%= product.price.to_s(:delimited) %>円</td>
-            <td><%= product.genre.name %></td>
-            <td>
-              <% if product.is_active %>
-                 販売中
-                <% else %>
-                <%=  "売り切れ" %>
-              <% end %>
-            </td>
-          </tr>
+      <div class="col-xs-1"></div>
+      <div class="col-xs-9">
+        <div class="text-right">
+          <%= link_to new_admin_product_path do %>
+            <button type="button" class="btn-outline-dark btn-circle btn-lg">＋</button>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+        <table class="table product-table">
+          <thead>
+            <tr>
+              <th>商品ID</th>
+              <th>商品名</th>
+              <th>税抜価格</th>
+              <th>ジャンル</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+            <tr>
+              <td><%= product.id %></td>
 
+              <td><%= link_to product.name,admin_product_path(product) %></td>
+              <td><%= product.price.to_s(:delimited) %></td>
+              <td><%= product.genre.name %></td>
+              <td>
+                <% if product.is_active %>
+                   販売中
+                  <% else %>
+                  <%=  "売り切れ" %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
         <%= paginate @products %>
+      </div>
+     <div class="col-xs-2"></div>
+
+
   </div>
 </div>
