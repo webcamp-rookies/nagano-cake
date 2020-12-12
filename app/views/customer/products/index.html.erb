@@ -20,7 +20,7 @@
                 <%= attachment_image_tag product, :image, size:'190x150', fallback: 'no_image.jpg',size: "190x150" %><br>
               <% end %>
               <%= product.name %><br>
-              ¥<%= (product.price*1.1).floor.to_s(:delimited)%>円(税込)
+              ¥<%= (product.price*1.1).floor.to_s(:delimited)%>(税込)
             </div>
           <% end %>
         <% end %>
