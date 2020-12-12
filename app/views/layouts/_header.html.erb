@@ -2,8 +2,13 @@
    <div class="container">
     <div class="row">
      <!--ロゴ -->
-      <nav class="nav-list navbar" >
-        <h3 class="site-name fas fa-birthday-cake">Nagano Cake</h3> <!--リンクにする?-->
+      <nav class="nav navbar-nav navbar-left">
+      <% if admin_signed_in? %>
+        <%= link_to "Nagano Cake", admin_products_top_path, class: "fas fa-birthday-cake" %>
+      <% else %>
+        <%= link_to "Nagano Cake", root_path, class: "fas fa-birthday-cake" %>
+      <% end %>
+     </nav>
 
         <ul class="nav-item nav navbar-nav navbar-right">
           <% if customer_signed_in? %>
@@ -15,7 +20,6 @@
            <li><%= link_to "商品一覧", products_path  %></li>
            <li><%= link_to "カート", cart_products_path %></li>
            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
-           <%= render "layouts/search" %>
           <% elsif admin_signed_in? %>
            <!--管理者がログインしている時 -->
             <li><%= link_to "商品一覧", admin_products_path %></li>
