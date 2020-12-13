@@ -1,5 +1,7 @@
 # **NaganoCake**
 
+<img width="1437" alt="Nagano Cake" src="https://user-images.githubusercontent.com/71477635/102001022-7d9b8200-3d30-11eb-8c7c-e09cc4ca52cc.png">
+
 # 概要
 
 長野県にある小さな洋菓子店「ながの CAKE」の商品を通販するための EC サイトです。
@@ -134,6 +136,8 @@
 
 
 # 開発環境
+
+cloud9
 
 ### 使用言語
 
