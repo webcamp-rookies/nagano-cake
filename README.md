@@ -1,24 +1,28 @@
 # README
+## Nagano Cake
+チームでのECサイト作成を行いました。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+注文情報を管理したいとご希望の方へ
 
-Things you may want to cover:
+## 実装機能
+ケーキの注文の管理、
 
-* Ruby version
+制作までのステータスを顧客へ伝達できます
 
-* System dependencies
+## 開発環境
+Ruby 2.6.3
+Rails 5.2.4.4
+SQlite3 3.33.0
+HTML5
 
-* Configuration
+## 実行環境
+ローカル環境にて実行してください
+git
 
-* Database creation
+## ER図
 
-* Database initialization
+## データ定義
 
-* How to run the test suite
+## 制作
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+DMM WEBCAMP©︎ Rookiez　
