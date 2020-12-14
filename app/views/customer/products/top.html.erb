@@ -4,7 +4,6 @@
       <%= render 'admin/genres/genre_sidebar', genres: @genres  %>
     </div>
 
-
     <div class="col-md-9">
       <div class="top-box">
         <p class="top-text">
@@ -21,11 +20,15 @@
       <div class="recommend-container">
         <% @random.each do |product| %>
           <div class="recommend-product">
+            <% if product.genre.is_active == true %>
+  		        <% if product.is_active == true %>
             <%= link_to product_path(product) do %>
-              <%= attachment_image_tag product, :image, size:'180x130', fallback: 'no_image.jpg', size:'180x130' %><br>
+              <%= attachment_image_tag product, :image, fallback: 'no_image.jpg', size:'180x130' %><br>
             <% end %>
             <p><%= product.name %></p>
             <p>¥<%= (product.price*1.1).floor.to_s(:delimited)%>(税込)</p>
+        <% end %>
+        <% end %>
           </div>
         <% end %>
       </div>

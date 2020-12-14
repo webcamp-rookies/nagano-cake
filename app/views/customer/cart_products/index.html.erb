@@ -20,7 +20,7 @@
       <% @cart_products.each do |cart_product| %>
         <tr>
           <td>
-            <%= attachment_image_tag cart_product.product, :image, :fill, 50, 50, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
+            <%= attachment_image_tag cart_product.product, :image, format:'jpeg', fallback:"no_image.jpg", size:"50x50" %>
             <%= cart_product.product.name %>
           </td>
           <td>
@@ -29,7 +29,7 @@
           <td>
             <%= form_with model: cart_product, url: cart_product_path(cart_product), local: true do |f| %>
               <%= f.hidden_field :id, :value => cart_product.id %>
-              <%= f.text_field :amount, :size => "5" %>　<%= f.submit "変更" %>
+              <%= f.number_field :amount, size: 1, min: 1 %>　<%= f.submit "変更" %>
             <% end %>
           </td>
           <td>¥<%= cart_product.sub_total.to_s(:delimited) %></td>
