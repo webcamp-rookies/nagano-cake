@@ -1,0 +1,18 @@
+// Place all the styles related to the admin::Orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.product-table th,
+.product-table td{
+  border-style: none;
+}
+
+.order-table th,
+.order-table td {
+  border-style: none;
+}
+
+.order-show-table th,
+.order-show-table td {
+  border-style: none;
+}
